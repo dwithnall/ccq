@@ -1,0 +1,24 @@
+{
+  "name": "coding-assessment",
+  "version": "1.0.0",
+  "description": "A coding challenge to help assess skills",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AVDW",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.19.0",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "^1.11.0",
+    "vue": "^2.6.12",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.2.0",
+    "vue-template-compiler": "^2.6.12"
+  }
+}
