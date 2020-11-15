@@ -7,10 +7,7 @@ Used Bootstrap for layout because it's easy.
 
 TODO
 ---
-* Added extra details into detail modal
-* Move details modal into self contained component
-* Add a filter/search in the header, thats why you put it there.
-
+* Add a filter/search in the header?
 
 Task to complete
 ---
