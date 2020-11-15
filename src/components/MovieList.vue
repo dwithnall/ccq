@@ -1,6 +1,6 @@
 <template>
 <section id="movie-cards">
-
+<!-- Fairly standard fluid grid layout. Issues with image scaling partially resolved using cover. Break points between lg & xl could do with some work -->
   <b-container fluid >  
     <b-row>
       <b-col 
@@ -11,6 +11,7 @@
         @click="showDetails(movie)"
       >
         <b-card 
+          class="h-100" 
           :title="movie.Title"
           :img-src="movie.Poster"
         >
@@ -18,6 +19,10 @@
       </b-col>
     </b-row>
   </b-container>
+
+  <!-- Took awhile to figure out how to get a modal working. 
+    Viable solution came from here https://github.com/bootstrap-vue/bootstrap-vue/issues/3365
+    Was taking wrong approach by using multiple modals in For loop instead of updating data in a single instance -->
 
   <b-modal hide-footer scrollable size="xl" no-fade centered
     id="movieDetailsModal" 
@@ -82,10 +87,12 @@ export default {
         }
       })
     },
+    // Show the detail modal
     showDetails: function(movie) {
       this.movieData = movie
       this.$bvModal.show('movieDetailsModal')
     },
+    // Clear the modal data on close
     clearMovieData: function() {
       this.movieData = {}
     }
@@ -98,4 +105,5 @@ export default {
     height:400px;
     object-fit: cover;
   }
+
 </style>

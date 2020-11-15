@@ -9,7 +9,7 @@ TODO
 ---
 * Added extra details into detail modal
 * Move details modal into self contained component
-* Neaten up cards
+* Add a filter/search in the header, thats why you put it there.
 
 
 Task to complete
