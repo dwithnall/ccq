@@ -5,6 +5,7 @@
         :active.sync="isLoading" 
         :can-cancel="false"
         :is-full-page="true"></loading>
+    <div v-else-if="isErrored">Something broke fetching the data. Check console for details.</div>
     <MovieList v-else :movieList="movies"></MovieList>
   </section>
 </template>
