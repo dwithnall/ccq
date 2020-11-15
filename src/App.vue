@@ -1,7 +1,10 @@
 <template>
   <section id="app1">
     <Header></Header>
-    <div v-if="loading">Fetching Movies...</div>
+    <loading  v-if="isLoading"
+        :active.sync="isLoading" 
+        :can-cancel="false"
+        :is-full-page="true"></loading>
     <MovieList v-else :movieList="movies"></MovieList>
   </section>
 </template>
@@ -15,17 +18,20 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: 'App',
   components: {
     Header,
-    MovieList
+    MovieList,
+    Loading
   },
   data() {
     return {
-      loading: true,
-      errored: false,
+      isLoading: true,
+      isErrored: false,
       movies: []
     }
   },
@@ -50,9 +56,9 @@ export default {
       })
       .catch(error => {
         console.error(error)
-        this.errored = true
+        this.isErrored = true
       })
-      .finally(() => this.loading = false);
+      .finally(() => this.isLoading = false);
 
   }
 }
