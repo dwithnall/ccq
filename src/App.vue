@@ -28,13 +28,11 @@ export default {
     data.map((movie, index) => { return movie.id = "movie_"+index }) // give each movie a unique ID
     this.movies = data // set our global data variable;
 
-    console.log(this.$route.query);
-
-
+    let authKey = 'AtVOjtwuDGe-yjxzsoRjvXt0xz35KyfUsinCmCSEKMg'
+    let url = 'https://prod-20.australiaeast.logic.azure.com/workflows/e72fe0ca53144e46bad1510c8c1dee65/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig='+authKey
 
     // Live data
-    // TODO: make auth data variable
-    // fetch('https://prod-20.australiaeast.logic.azure.com/workflows/e72fe0ca53144e46bad1510c8c1dee65/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AtVOjtwuDGe-yjxzsoRjvXt0xz35KyfUsinCmCSEKMg', {
+    // fetch(url, {
     //   method: 'get'
     // }).then((response) => {
     //   return response.json()
