@@ -6,29 +6,91 @@
       <b-col sm="6" md="4" lg="3" xl="2"
         v-for="movie in movieList"
         :key="movie.id"
-        @click="remove(movie.id)"
+        @click="showDetails(movie)"
       >
         <b-card 
           :title="movie.Title"
           :img-src="movie.Poster"
         >
+        
       </b-col>
     </b-row>
   </b-container>
+
+  <b-modal hide-footer scrollable size="xl" no-fade centered
+    id="movieDetailsModal" 
+    @hidden="clearMovieData"
+    :title='movieData.Title' >
+
+    <b-container fluid>
+      <b-row>
+        <b-col cols="auto">
+          <img :src='movieData.Poster'>
+        </b-col>
+        <b-col>
+          <b-container fluid>
+            <b-row>
+              <b-col>
+                <h2>{{ movieData.Title }}</h2>
+                <p>{{ movieData.Plot }}</p>
+              </b-col>
+            </b-row>
+          </b-container>
+      </b-row>
+    </b-container>
+    <div class="modal-footer">
+     <button type="button" @click="remove(movieData.id)" class="btn btn-danger mr-auto">Delete</button>
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </b-modal>
+
 </section>
 </template>
 
 <script>
 
+import MovieDetails from "./MovieDetails.vue"
+
 export default {
   props: {
     movieList: Array
   },
+  components: {
+    MovieDetails
+  },
+  data() {
+    return {
+      movieData: {}
+    }
+  },
   methods: {
     // Delete element from movie array
     remove: function(id) {
-      console.log(this.movieList.findIndex(movie => movie.id === id))
-      this.movieList.splice(this.movieList.findIndex(movie => movie.id === id), 1)
+      this.$bvModal.msgBoxConfirm('Are you sure?', {
+        title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+      .then(confirmation => {
+        console.log(confirmation);
+        if (confirmation) {
+          this.movieList.splice(this.movieList.findIndex(movie => movie.id === id), 1)
+          this.$bvModal.hide('movieDetailsModal')
+        }
+      })
+    },
+    showDetails: function(movie) {
+      this.movieData = movie
+      this.$bvModal.show('movieDetailsModal')
+    },
+    clearMovieData: function() {
+      this.movieData = {}
     }
   }
 }

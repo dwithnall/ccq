@@ -1,6 +1,7 @@
 App for CCQ to demonrate I can actually code.
 
 First attempt at using Vue.
+Does not work in IE - need to use babel
 
 Task to complete
 ---
