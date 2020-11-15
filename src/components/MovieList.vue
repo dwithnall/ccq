@@ -3,7 +3,9 @@
 
   <b-container fluid >  
     <b-row>
-      <b-col sm="6" md="4" lg="3" xl="2"
+      <b-col 
+        sm="6" md="4" lg="3" xl="2"
+        class="mb-2"
         v-for="movie in movieList"
         :key="movie.id"
         @click="showDetails(movie)"
@@ -40,7 +42,7 @@
     </b-container>
     <div class="modal-footer">
      <button type="button" @click="remove(movieData.id)" class="btn btn-danger mr-auto">Delete</button>
-     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+     <button type="button" @click="$bvModal.hide('movieDetailsModal')" class="btn btn-secondary" data-dismiss="modal">Close</button>
     </div>
   </b-modal>
 
@@ -49,14 +51,9 @@
 
 <script>
 
-import MovieDetails from "./MovieDetails.vue"
-
 export default {
   props: {
     movieList: Array
-  },
-  components: {
-    MovieDetails
   },
   data() {
     return {

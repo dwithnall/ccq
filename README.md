@@ -3,6 +3,12 @@ App for CCQ to demonrate I can actually code.
 First attempt at using Vue.
 Does not work in IE - need to use babel
 
+TODO
+Added extra details into detail modal
+move details modal into self contained component
+neaten up cards
+
+
 Task to complete
 ---
 
