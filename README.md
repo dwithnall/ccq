@@ -1,12 +1,15 @@
-App for CCQ to demonrate I can actually code.
+# CCQ
+App for CCQ to demonrate I can actually code. First attempt at using Vue.
 
-First attempt at using Vue.
-Does not work in IE - need to use babel
+Used Bootstrap for layout because it's easy.
+
+**NOTE:** Does not work in IE - need to use Babel? Think it's probably the \<Template\>\</Template\> syntax.
 
 TODO
-Added extra details into detail modal
-move details modal into self contained component
-neaten up cards
+---
+* Added extra details into detail modal
+* Move details modal into self contained component
+* Neaten up cards
 
 
 Task to complete
