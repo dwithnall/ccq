@@ -20,45 +20,21 @@
     </b-row>
   </b-container>
 
-  <!-- Took awhile to figure out how to get a modal working. 
-    Viable solution came from here https://github.com/bootstrap-vue/bootstrap-vue/issues/3365
-    Was taking wrong approach by using multiple modals in For loop instead of updating data in a single instance -->
-
-  <b-modal hide-footer scrollable size="xl" no-fade centered
-    id="movieDetailsModal" 
-    @hidden="clearMovieData"
-    :title='movieData.Title' >
-
-    <b-container fluid>
-      <b-row>
-        <b-col cols="auto">
-          <img :src='movieData.Poster'>
-        </b-col>
-        <b-col>
-          <b-container fluid>
-            <b-row>
-              <b-col>
-                <h2>{{ movieData.Title }}</h2>
-                <p>{{ movieData.Plot }}</p>
-              </b-col>
-            </b-row>
-          </b-container>
-      </b-row>
-    </b-container>
-    <div class="modal-footer">
-     <button type="button" @click="remove(movieData.id)" class="btn btn-danger mr-auto">Delete</button>
-     <button type="button" @click="$bvModal.hide('movieDetailsModal')" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    </div>
-  </b-modal>
+  <MovieDetails :movieData="movieData" @close="handleClose" @remove="handleRemove"></MovieDetails>
 
 </section>
 </template>
 
 <script>
 
+import MovieDetails from './MovieDetails.vue'
+
 export default {
   props: {
     movieList: Array
+  },
+  components: {
+    MovieDetails
   },
   data() {
     return {
@@ -67,6 +43,12 @@ export default {
   },
   methods: {
     // Delete element from movie array
+    handleRemove: function(id) {
+      console.log("handleRemove", id)
+
+      this.movieList.splice(this.movieList.findIndex(movie => movie.id === id), 1)
+      this.$bvModal.hide('movieDetailsModal')
+    },
     remove: function(id) {
       this.$bvModal.msgBoxConfirm('Are you sure?', {
         title: 'Please Confirm',
@@ -93,7 +75,8 @@ export default {
       this.$bvModal.show('movieDetailsModal')
     },
     // Clear the modal data on close
-    clearMovieData: function() {
+    handleClose: function() {
+      console.log("handleClose")
       this.movieData = {}
     }
   }
